@@ -1,0 +1,75 @@
+Android :
+
+D:\WebstormProjects\Yzyl_RN\node_modules\react-native-image-zoom-viewer\built\image-viewer.style.js
+  34            backgroundColor: 'white'
+ 105  top: 20,
+ 111    color: "gray",
+               fontSize: 14,
+
+D:\WebstormProjects\Yzyl_RN\node_modules\react-native-autoheight-webview\autoHeightWebView\index.android.js
+  170行加入：             this.props.onMessage(e);
+
+D:\WebstormProjects\Yzyl_RN\node_modules\react-native-image-pan-zoom\built\image-zoom\image-zoom.component.js
+25行
+const {width: dWidth, height: dHeight} = react_native_1.Dimensions.get('window');
+
+588行  handleLayout方法：
+ if (this.props.imageHeight >= dHeight) {
+            let h = (this.props.imageHeight/2-dHeight/2);
+            let y= react_native_1.Platform.OS ==='ios'?h:h+10 ;
+            // this.animatedPositionY.setValue(this.positionY);
+            if(this.positionY == y){
+            }else {
+                this.positionY =y;
+                react_native_1.Animated.timing(this.animatedPositionY, {
+                    toValue: this.positionY,
+                    duration: 50
+                }).start();
+            }
+        }
+
+注释掉149-160行
+ // 拖拽正常结束后,如果没有缩放,直接回到0,0点
+            // if (_this.scale === 1) {
+                // _this.positionX = 0;
+                // _this.positionY = 0;
+                // react_native_1.Animated.timing(_this.animatedPositionX, {
+                //     toValue: _this.positionX,
+                //     duration: 100
+                // }).start();
+                // react_native_1.Animated.timing(_this.animatedPositionY, {
+                //     toValue: _this.positionY,
+                //     duration: 100
+                // }).start();
+            // }
+注释掉420-426
+                             // 只要滑动溢出量不小于 0，就可以拖动
+                                // if (_this.swipeDownOffset > 0) {
+                                    // _this.positionY += diffY / _this.scale;
+                                    // _this.animatedPositionY.setValue(_this.positionY);
+                                    // 越到下方，缩放越小
+                                    // _this.scale = _this.scale - diffY / 1000;
+                                    // _this.animatedScale.setValue(_this.scale);
+                                // }
+
+
+
+D:\WebstormProjects\Yzyl_RN\node_modules\react-native-image-zoom-viewer\built\image-viewer.component.js
+在406行添加 ：
+ //如果宽小于屏幕宽度,整体放大到宽度是屏幕宽度
+            if (width < screenWidth) {
+                var widthPixel = screenWidth / width;
+                width *= widthPixel;
+                height *= widthPixel;
+            }
+注释掉412-417
+            // 如果此时高度还大于屏幕高度,整体缩放到高度是屏幕高度
+            // if (height > screenHeight) {
+            //     var HeightPixel = screenHeight / height;
+            //     width *= HeightPixel;
+            //     height *= HeightPixel;
+            // }
+
+IOS:
+/Users/coatu/Desktop/yzyl_new/node_modules/react-native-autoheight-webview/autoHeightWebView/index.ios.js
+                    onMessage={this.props.onMessage}

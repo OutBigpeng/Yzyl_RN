@@ -1,0 +1,57 @@
+react-native-picker
+ 修改： com.beefe.picker.view.LoopView
+ 下面1.2  参数越大，显示的字越大。这里放大的是像素的整体比例
+   public final void setTextSize(float size) {
+        if (size > 0.0F) {
+            this.textSize = (int) (context.getResources().getDisplayMetrics().density * size/1.2);
+            paintOuterText.setTextSize(textSize);
+            paintCenterText.setTextSize(textSize);
+            remeasure();
+            invalidate();
+        }
+    }
+
+RNFSManager: downloadFile  第491行添加 ：
+  if (!file.exists()) {
+                file.createNewFile();
+            }
+
+
+
+
+
+
+
+    jpush-react-native:
+    JPushModulel:添加
+
+    private static boolean isApplicationRunning(final Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(100);
+        for (ActivityManager.RunningTaskInfo info : list) {
+            if (info.topActivity.getPackageName().equals(context.getPackageName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isApplicationRunningBackground(final Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+        if (!tasks.isEmpty()) {
+            ComponentName topActivity = tasks.get(0).topActivity;
+            if (!topActivity.getPackageName().equals(context.getPackageName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @ReactMethod
+    public void finishActivity() {
+        Activity activity = getCurrentActivity();
+        if (activity != null) {
+            activity.finish();
+        }
+    }

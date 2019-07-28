@@ -1,0 +1,48 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        jcenter { url "http://jcenter.bintray.com/" }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.3'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+ext{
+    compileSdkVersion = 27
+    buildToolsVersion ='27.0.3'
+    minSdkVersion =  16
+    targetSdkVersion = 23
+    supportLibVersion = ""
+    espressoVersion = ""
+
+}
+allprojects {
+    repositories {
+        configurations.all {
+            resolutionStrategy {
+                force'com.facebook.react:react-native:0.46.0'
+            }
+        }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        jcenter { url "http://jcenter.bintray.com/" }
+
+      // ADD THIS
+      maven { url 'https://maven.google.com' }
+
+      // ADD THIS
+      maven { url "https://jitpack.io" }
+        mavenLocal()
+        jcenter()
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url "$rootDir/../node_modules/react-native/android"
+        }
+    }
+}
+

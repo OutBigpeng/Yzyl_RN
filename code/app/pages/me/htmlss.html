@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="application/javascript">
+        function test() {
+            window.postMessage('哈哈哈'); //调用rn的接口
+        }
+
+        function msg(event) {
+            document.write('event:'+event)
+        }
+
+        function postQuestion(id,type) {
+            var data ={
+                'id':id,
+                'name':type
+            }
+
+            window.postMessage(JSON.stringify(data)); //调用rn的接口
+        }
+
+                function msg1(event) {
+                    document.write('ahahaha:'+event)
+                }
+
+
+    </script>
+
+    <style type="text/css">
+        body {
+            margin:0;
+            padding:0;
+            background: #ccc;
+        }
+
+        h1{
+            padding:45px;
+            margin:0;
+            text-align: center;
+            color:#33f;
+        }
+    </style>
+</head>
+<body>
+<H1>我是h5啊</H1>
+<Button onclick="test()">赶快点我啊</Button>
+
+<Button onclick="postQuestion('http://info.qntest.youzhongyouliao.com/ec4de335-a24c-4085-a5c0-072e3b105890.jpeg-640x640&quot;','image')">赶快点我啊2222</Button>
+</body>
+</html>
+
